@@ -12,6 +12,10 @@
 	@include('includes.header')
 	<div class="container-fluid">
 		@yield('content')
+		@php
+		 $file = resource_path('assets\sass\app.scss');
+		 echo $file;
+		@endphp
 	</div>
 	@include('includes.footer')
 </body>
