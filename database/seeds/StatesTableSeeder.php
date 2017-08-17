@@ -15,12 +15,13 @@ class StatesTableSeeder extends Seeder
         //load the CSV document from a file path
         $file = resource_path('masterTables\states.csv');
     	$csvReader = Reader::createFromPath($file);
-    	$headers = $csvReader->fetchOne();
+    	$header = $csvReader->fetchOne();
 
-    	$nbInsert = $csvReader->each(function($row){
+    	$nbInsert = $csvReader->each(function($row, $rowOffset){
     		// return false if there is no data
     		if (empty($row)) return false;
-    		return DB::table('states')->insert(array('state_code' => $row[0],'state' => $row[1],));
+    		if ($rowOffset == 0) return true;
+    		return DB::table('states')->insert(array('state_code' => $row[0], 'state' => $row[1],));
     	});
     }
 }
