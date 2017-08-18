@@ -97,10 +97,9 @@
     <div class="form-group col-md-4">
       <label for="inputCourt" class="col-form-label small">Court</label>
       <select class="form-control input-sm">
-          <option value="hslc">District & Session Judge</option>
-          <option value="hs">Addl. District & Session Judge</option>
-          <option value="grad">Munsiff Court</option>
-          <option value="pg">Munsiff Court No.1</option>
+      	@foreach ($establishments as $establishment)
+      		<option value="{{$establishment->est_code}}">{{$establishment->establishment}}</option>
+      	@endforeach
       </select>
     </div>
     <div class="form-group col-md-4">

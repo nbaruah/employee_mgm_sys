@@ -11,6 +11,4 @@
 |
 */
 
-Route::get('/', function () {
-    return view('employee.registration');
-});
+Route::get('/employee/create', 'EmployeeController@create');
