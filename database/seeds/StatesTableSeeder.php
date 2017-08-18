@@ -12,10 +12,10 @@ class StatesTableSeeder extends Seeder
      */
     public function run()
     {
-        //load the CSV document from a file path
+        //load the CSV document from resource path
         $file = resource_path('masterTables\states.csv');
     	$csvReader = Reader::createFromPath($file);
-    	$header = $csvReader->fetchOne();
+    	//$header = $csvReader->fetchOne();
 
     	$nbInsert = $csvReader->each(function($row, $rowOffset){
     		// return false if there is no data
