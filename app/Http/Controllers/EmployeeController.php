@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Employee;
+use App\Establishment;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -24,7 +25,8 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        $establishments=Establishment::all();
+        return view('employee.registration')->with('establishments', $establishments);
     }
 
     /**
