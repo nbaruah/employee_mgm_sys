@@ -37,7 +37,26 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'emp_id' => 'required|unique:employees',
+            'dob' => 'required|date_format:d/m/Y',
+            'gender' => 'required',
+            'fname' => 'required|alpha',
+            'mname' => 'alpha',
+            'lname' => 'required|alpha',
+            'edu_qual' => 'alpha',
+            'pan' => 'alpha_num',
+            'adhar' => 'alpha_num',
+            'email' => 'email',
+            'phone' => 'required|digits:12',
+            'present_add' => 'alpha',
+            'permanent_add' => 'alpha',
+            'court_id' => 'required|digits:3',
+            'post_id' => 'required|digits:3',
+            'loc_id' => 'required|digits:3',
+            'doj' => 'date_format:d/m/Y',
+        ]);
+        dd($request->all());
     }
 
     /**

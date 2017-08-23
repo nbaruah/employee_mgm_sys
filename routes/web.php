@@ -12,3 +12,4 @@
 */
 
 Route::get('/employee/create', 'EmployeeController@create');
+Route::post('/employee', 'EmployeeController@store');
