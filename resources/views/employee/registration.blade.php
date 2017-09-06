@@ -40,7 +40,7 @@ Employee Registration
                     </div>
                     <div class="form-group col-md-3">
                         <label for="dob" class="col-form-label small">Date of Birth</label>
-                        <input type="text" class="form-control input-sm" id="dob" name="dob" value="{{ old('dob') }}" required readonly="true">
+                        <input type="text" class="form-control input-sm pick-date" id="dob" name="dob" value="{{ old('dob') }}" required>
                     </div>
                     <div class="form-group col-md-3">
                         <label for="gender" class="col-form-label small">Gender</label>
@@ -109,16 +109,16 @@ Employee Registration
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-5">
-                        <label for="present_add" class="col-form-label small">Present Address</label>
-                        <textarea class="form-control input-sm" name="present_add" value="{{ old('present_add') }}" rows="4" cols="20" id="present_add" placeholder="Present Address"></textarea>
+                        <label for="permanent_add" class="col-form-label small">Permanent Address</label>
+                        <textarea class="form-control input-sm" name="permanent_add" rows="4" cols="20" id="permanent_add" placeholder="Permanent Address">{{ old('permanent_add') }}</textarea>
                     </div>
                     <div class="form-group col-md-2">
-                        <label for="same-add" class="col-form-label small">Same as Present Address</label><br>
+                        <label for="same-add" class="col-form-label small">Same as Permanent</label><br>
                         <center><input type="checkbox" id="same"></center>    
                     </div>
                     <div class="form-group col-md-5">
-                        <label for="permanent_add" class="col-form-label small">Permanent Address</label>
-                        <textarea class="form-control input-sm" name="permanent_add" value="{{ old('permanent_add') }}" rows="4" cols="20" id="permanent_add" placeholder="Permanent Address"></textarea>
+                        <label for="present_add" class="col-form-label small">Present Address</label>
+                        <textarea class="form-control input-sm" name="present_add" rows="4" cols="20" id="present_add" placeholder="Present Address">{{ old('present_add') }}</textarea>
                     </div>
                 </div>
             </div>
@@ -141,10 +141,9 @@ Employee Registration
                     <div class="form-group col-md-6">
                         <label for="post_id" class="col-form-label small">Post</label>
                         <select class="form-control input-sm" id="post_id" name="post_id" required>
-                            <option value="hslc">District & Session Judge</option>
-                            <option value="hs">Addl. District & Session Judge</option>
-                            <option value="grad">Munsiff Court</option>
-                            <option value="pg">Munsiff Court No.1</option>
+                            @foreach ($establishments as $establishment)
+                            <option value="{{$establishment->est_code}}">{{$establishment->establishment}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -152,15 +151,14 @@ Employee Registration
                     <div class="form-group col-md-6">
                         <label for="loc_id" class="col-form-label small">Location</label>
                         <select class="form-control input-sm" id="loc_id" name="loc_id" required>
-                            <option value="hslc">District & Session Judge</option>
-                            <option value="hs">Addl. District & Session Judge</option>
-                            <option value="grad">Munsiff Court</option>
-                            <option value="pg">Munsiff Court No.1</option>
+                            @foreach ($establishments as $establishment)
+                            <option value="{{$establishment->est_code}}">{{$establishment->establishment}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="doj" class="col-form-label small">Date of Joining</label>
-                        <input type="text" class="form-control input-sm" id="doj" name="doj">
+                        <input type="text" class="form-control input-sm pick-date" id="doj" name="doj">
                     </div>
                 </div>
             </div>

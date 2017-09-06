@@ -37,10 +37,9 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
         $this->validate($request, [
             'emp_id' => 'required|unique:employees|alpha_num',
-            'dob' => 'required|date_format:dd/mm/YY',
+            'dob' => 'required|date_format:d-m-Y',
             'gender' => 'required',
             'fname' => 'required|alpha',
             'mname' => 'alpha|nullable',
@@ -50,14 +49,16 @@ class EmployeeController extends Controller
             'adhar' => 'alpha_num|nullable',
             'email' => 'email|nullable',
             'phone' => 'required|digits:12',
-            'present_add' => 'alpha',
-            'permanent_add' => 'alpha',
+            'present_add' => ['required_without:permanent_add', 'nullable', 'regex:[a-zA-Z0-9 \-,]'],
+            'permanent_add' => ['required_without:present_add', 'nullable', 'regex:[a-zA-Z0-9 \-,]'],
             'court_id' => 'required|alpha_num',
             'post_id' => 'required|alpha_num',
             'loc_id' => 'required|alpha_num',
-            'doj' => 'date_format:d/m/Y',
+            'doj' => 'nullable|date_format:d-m-Y',
         ]);
         
+        $fields = ["emp_id", "dob", "gender", "blood_group", "fname", "mname", "lname", "edu_qual", "pan", "adhar", "email", "phone", "permanent_add", "present_add", "court_id", "post_id", "loc_id", "doj"];
+        Employee::create(request($fields));
     }
 
     /**
